@@ -26,15 +26,22 @@ class FoodsFragment : Fragment(R.layout.fragment_foods) {
         super.onViewCreated(view, savedInstanceState)
 
         getFoodSearchResult()
+        scrollToTop()
+    }
+
+    private fun scrollToTop() {
+        fabBtn.setOnClickListener { foodsRV.smoothScrollToPosition(0) }
     }
 
     private fun getFoodSearchResult() {
         viewModel.getFoodSearchResult().observe(viewLifecycleOwner, Observer {
 
             it?.let {
+                welcomeTV.visibility = View.GONE
                 foodsRV.setHasFixedSize(true)
                 foodsRV.adapter = foodsAdapter
                 foodsRV.layoutManager = GridLayoutManager(requireContext(),2,RecyclerView.VERTICAL,false)
+                foodsAdapter.updateQuerySearch(viewModel.querySearch.value ?: "")
                 foodsAdapter.submitList(it)
 
             }
