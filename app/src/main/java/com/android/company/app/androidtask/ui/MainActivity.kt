@@ -1,7 +1,8 @@
-package com.android.company.app.androidtask
+package com.android.company.app.androidtask.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.android.company.app.androidtask.R
 
 
 class MainActivity : AppCompatActivity()  {
