@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name='SetaApp'
+rootProject.name='RobustaTask'
