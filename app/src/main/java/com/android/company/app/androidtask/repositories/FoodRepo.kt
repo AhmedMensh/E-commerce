@@ -1,4 +1,6 @@
 package com.android.company.app.androidtask.repositories
 
-class FoodRepo : IFoodRepo {
+import com.android.company.app.androidtask.data.remote.RemoteDataSource
+
+class FoodRepo(private val remoteDataSource: RemoteDataSource) : IFoodRepo {
 }
