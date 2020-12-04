@@ -26,3 +26,13 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext{
+    baseUrl = System.getenv("BASE_URL")?: getLocalProperties()['base_url']
+}
+
+private Properties getLocalProperties() {
+    def localProperties = new Properties()
+    localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+    return localProperties
+}
