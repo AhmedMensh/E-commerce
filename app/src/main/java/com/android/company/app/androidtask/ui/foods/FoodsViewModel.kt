@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.company.app.androidtask.models.DataResult
 import com.android.company.app.androidtask.models.Foods
+import com.android.company.app.androidtask.repositories.FoodRepo
 import com.android.company.app.androidtask.repositories.IFoodRepo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -35,7 +36,7 @@ class FoodsViewModel(private val iFoodRepo: IFoodRepo) : ViewModel() {
         viewModelScope.launch {
             when (val result = withContext(Dispatchers.IO) { iFoodRepo.getAllFoods() }) {
                 is DataResult.Success -> {
-                    delay(500)
+                    delay(200)
                     data.value = result.content?.filter {
                         it.name!!.contains(
                             query.trim(),

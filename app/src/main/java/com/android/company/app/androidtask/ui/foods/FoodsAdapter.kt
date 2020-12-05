@@ -3,7 +3,6 @@ package com.android.company.app.androidtask.ui.foods
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +13,7 @@ import com.android.company.app.androidtask.models.Food
 import kotlinx.android.synthetic.main.list_item_food.view.*
 
 
-class FoodsAdapter : ListAdapter<Food,FoodsAdapter.ViewHolder>(DiffCallback){
+class FoodsAdapter(private val listener: FoodListener) : ListAdapter<Food,FoodsAdapter.ViewHolder>(DiffCallback){
 
     private var query = ""
 
@@ -25,7 +24,7 @@ class FoodsAdapter : ListAdapter<Food,FoodsAdapter.ViewHolder>(DiffCallback){
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.bind(getItem(position),query)
+        holder.bind(getItem(position),query,listener)
     }
 
     fun updateQuerySearch(querySearch: String) {
@@ -46,13 +45,14 @@ class FoodsAdapter : ListAdapter<Food,FoodsAdapter.ViewHolder>(DiffCallback){
 
      class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-         fun bind(item: Food, query: String){
+         fun bind(item: Food, query: String, listener: FoodListener){
              itemView.apply {
 
                  item.url?.setIcon(foodImgV)
                  foodNameTV.text = item.name
                  foodPriceTV.text = "${item.price} ${itemView.resources.getString(R.string.currency)}"
                  foodNameTV.highLight(query)
+                 addToCartImgV.setOnClickListener { listener.addToCart(item) }
              }
          }
      }

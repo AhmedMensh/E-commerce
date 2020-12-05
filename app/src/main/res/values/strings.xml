@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name" translatable="false">Android Task</string>
+    <string name="app_name" translatable="false">Hybrid Market</string>
 
     <string name="currency">L.E</string>
     <string name="search">Search</string>
     <string name="search_hint">Name</string>
-    <string name="welcome_text">Welcome to hybrid market app,please use the search icon to get what you looking for</string>
+    <string name="welcome_text">Welcome to hybrid market app \nplease use the search icon to get what you looking for</string>
+    <string name="item_added_to_cart">Item added to cart successfully</string>
 
 </resources>
